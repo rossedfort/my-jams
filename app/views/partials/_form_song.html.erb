@@ -1,7 +1,9 @@
 <%= form_for(@song) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label "Artist" %>
-  <%= f.collection_select :artist_id, Artist.all, :id, :name %>
+  <%= f.label :artists %>
+  <div class="input-field browser-default">
+      <%= f.collection_select :artist_id, Artist.all, :id, :name, {}, {class: "browser-default"} %>
+  </div>
   <%= f.submit %>
 <% end  %>
