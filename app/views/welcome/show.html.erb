@@ -3,3 +3,9 @@
     Welcome to<br>My(Your)-Jams!!!!!!!!!!!!!!!!
   </h1>
 </div>
+
+<% @songs.each do |song| %>
+<h4>Song: <%= song.title %></h4>
+    Artist: <%= song.artist.name %><br>
+    Owner: <%= song.user.username %>
+<% end %>

@@ -13,6 +13,7 @@
       <ul class="right hide-on-med-and-down white-text">
         <li><a href="/users/new">Create Account!</a></li>
         <% if current_user %>
+          <li>Logged in As: <%= current_user.username %> </li>
           <li><%= link_to 'Logout', logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Login', login_path %></li>
