@@ -1,6 +1,10 @@
 class WelcomeController < ApplicationController
   def show
-    @songs = Song.all
-    render :show
+    if current_user
+      @songs = User.find(session[:user_id]).songs
+      render :show
+    else
+      render :show
+    end
   end
 end

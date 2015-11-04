@@ -11,12 +11,16 @@
     <div class="nav-wrapper grey">
       <a class="brand-logo center">My Jams</a>
       <ul class="right hide-on-med-and-down white-text">
-        <li><a href="/users/new">Create Account!</a></li>
-        <% if current_user %>
-          <li>Logged in As: <%= current_user.username %> </li>
+        <% if current_user && current_user.admin? %>
+          <li>Admin: <%= current_user.username %> </li>
+          <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+          <li> <%= link_to 'Admin Dash', admin_categories_path %> </li>
+        <% elsif current_user %>
+          <li>Logged In As: <%= current_user.username %> </li>
           <li><%= link_to 'Logout', logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Login', login_path %></li>
+          <li><a href="/users/new">Create Account!</a></li>
         <% end %>
       </ul>
       <ul class="left hide-on-med-and-down white-text">

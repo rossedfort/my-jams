@@ -1,11 +1,31 @@
 <div class="center containter">
   <h1 class="huge-red">
-    Welcome to<br>My(Your)-Jams!!!!!!!!!!!!!!!!
+    Welcome to My-Jams!!!!!!!!!!!!!!!!
   </h1>
 </div>
-
-<% @songs.each do |song| %>
-<h4>Song: <%= song.title %></h4>
-    Artist: <%= song.artist.name %><br>
-    Owner: <%= song.user.username %>
+<br><br>
+<% if !current_user %>
+  <div class="container">
+    <div class="row">
+      <div class="col s6 offset-s3 center">
+        <p>Login:</p>
+        <%= form_for(:session, url: login_path) do |f| %>
+          <%= f.label :username %>
+          <%= f.text_field :username %>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+          <%= f.submit "Login" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <% @songs.each do |song| %>
+    <ul>
+      <li>Song: <%= song.title %></li>
+      <li>Artist: <%= song.artist.name %> </li>
+    </ul>
+    <% end %>
+  </div>
 <% end %>

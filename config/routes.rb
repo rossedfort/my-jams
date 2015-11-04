@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :artists
   resources :users, only: [:new, :create, :show]
 
+  namespace :admin do
+    resources :categories
+  end
+
   root 'welcome#show'
 
   get '/login', to: 'sessions#new'

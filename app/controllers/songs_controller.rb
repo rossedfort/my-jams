@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update]
 
   def index
-    @songs = Song.all
+    @songs = User.find(session[:user_id]).songs
   end
 
   def show
@@ -48,6 +48,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:id, :title, :artist_id, :user_id)
+    params.require(:song).permit(:id, :title, :artist_id, :user_id, :category_id)
   end
 end
